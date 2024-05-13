@@ -1,6 +1,11 @@
 #include "../source/STOLAS.hpp"
 
 //--------- User may change ---------
+// Model parameters
+const std::string model = "chaotic"; // Name of the model
+const double mm = 0.0211; // Mass of the inflaton
+const std::vector<double> phii{11.,-sqrt(2./3)*mm}; // Initial conditions {field,derivative}
+
 // Potential
 double STOLAS::VV(double phi) {
   return mm*mm*phi*phi/2.;
@@ -19,6 +24,12 @@ double STOLAS::calPphi(std::vector<double> &phi) {
   double NoiseNLO = (1. + eps*(6.-4.*euler_gamma-8.*log(2.))) * pow(sigma*Hi/2./HH, -4.*eps);
 
   return pow(HH/2./M_PI, 2) * NoiseNLO;
+}
+
+// The condition of end of inflation
+bool STOLAS::EoI(std::vector<double> &phi) {
+  return ep(phi[0],phi[1]) <= 1;
+  // return phi[0] >= phif;
 }
 //-----------------------------------
 

@@ -54,6 +54,7 @@ public:
   double VV(double phi);
   double Vp(double phi);
   double calPphi(std::vector<double> &phi);
+  bool EoI(std::vector<double> &phi);
  
   void dNmap();
   void animation();

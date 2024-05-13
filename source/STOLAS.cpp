@@ -104,7 +104,7 @@ void STOLAS::dNmap() {
     double dN1 = dN;
     std::vector<double> prephi(2);
     while (dN1 >= Nprec) {
-      while (ep(phi[0],phi[1])<=1.) {
+      while (EoI(phi)) {
 	prephi[0] = phi[0];
 	prephi[1] = phi[1];
 	RK4(N,phi,dN1);
@@ -130,7 +130,7 @@ void STOLAS::dNmap() {
 
 }
 
-// Caluculate power spectrum
+// Calculate power spectrum
 void STOLAS::spectrum() {
   powfile.open(powfileprefix + std::to_string(NL) + std::string("_") + std::to_string(noisefileNo) + std::string(".dat"));
   powfile << std::setprecision(10);
@@ -313,6 +313,7 @@ double STOLAS::ep(double phi, double pi) {
 double STOLAS::hubble(double phi, double pi) {
   return sqrt((pi*pi/2. + VV(phi))/3.);
 }
+
 
 std::vector<double> STOLAS::dphidN(double N, std::vector<double> phi) {
   std::vector<double> dphidN(2);
