@@ -53,7 +53,6 @@ public:
   
   double VV(double phi);
   double Vp(double phi);
-  double calPphi(std::vector<double> &phi);
   bool EoI(std::vector<double> &phi);
  
   void dNmap();
@@ -67,7 +66,16 @@ public:
   std::vector<double> dphidN(double N, std::vector<double> phi);
 
   void RK4(double &t, std::vector<double> &x, double dt);
-  void RK4Mbias(double &N, std::vector<double> &phi, double dN, double dw, double Bias);
+
+  #if BrokenPoint==0
+    double calPphi(std::vector<double> &phi);
+    void RK4Mbias(double &N, std::vector<double> &phi, double dN, double dw, double Bias);
+  #elif BrokenPoint==1
+    double calPphi(double &N, std::vector<double> &phi, double N0, bool broken);
+    double calPpi(double &N, std::vector<double> &phi, double N0, bool broken);
+    double RecalPphipi(double &N, std::vector<double> &phi, double N0, bool broken);
+    void RK4Mbias(double &N, std::vector<double> &phi, double dN, double dw, double Bias, double N0, bool broken);
+  #endif
 };
 
 #endif
