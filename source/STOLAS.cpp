@@ -92,7 +92,7 @@ void STOLAS::dNmap() {
 #endif
   for (int i=0; i<NL*NL*NL; i++) {
     double N=0;
-    #if BrokenPoint==1
+    #if MODEL==1
       double N0;
       bool broken = false;
     #endif
@@ -103,9 +103,9 @@ void STOLAS::dNmap() {
         pidata[n][i] = phi[1]*phi[1];
       }
       
-      #if BrokenPoint==0
+      #if MODEL==0
         RK4Mbias(N,phi,dN,noisedata[i][n],biasdata[i][n]);
-      #elif BrokenPoint==1
+      #elif MODEL==1
         RK4Mbias(N,phi,dN,noisedata[i][n],biasdata[i][n],N0,broken);
         if (!broken && phi[0] < 0) {
           N0 = N;
@@ -156,7 +156,7 @@ void STOLAS::spectrum() {
   
   powsfile.open(powsfileprefix + std::string(".dat"), std::ios::app);
   powsfile << std::setprecision(10);
-  int imax = ceil(log(NL/2)/dlnk);
+  int imax = ceil(log(NL/2)/dlogn);
   std::vector<double> disc_power(imax, 0);
 
   LOOP{
@@ -185,8 +185,8 @@ void STOLAS::spectrum() {
     double LogNk = log(sqrt(rk));
     double calPk = norm(Nk[i][j][k])/NL/NL/NL/NL/NL/NL;
     for (size_t ii = 0; ii < imax; ii++) {
-      if (std::abs(dlnk*ii-LogNk)<=dlnk/2.) {
-        disc_power[ii] += calPk/dlnk;
+      if (std::abs(dlogn*ii-LogNk)<=dlogn/2.) {
+        disc_power[ii] += calPk/dlogn;
         break;
       }
     }
@@ -377,7 +377,7 @@ void STOLAS::RK4(double &t, std::vector<double> &x, double dt) {
   x += dt*(b[0]*kx[0] + b[1]*kx[1] + b[2]*kx[2] + b[3]*kx[3]);
 }
 
-#if BrokenPoint==0
+#if MODEL==0
 void STOLAS::RK4Mbias(double &N, std::vector<double> &phi, double dN, double dw, double Bias) {
   double phiamp = sqrt(calPphi(phi));
 
@@ -387,7 +387,7 @@ void STOLAS::RK4Mbias(double &N, std::vector<double> &phi, double dN, double dw,
   double GaussianFactor = 1./dNbias/sqrt(2*M_PI) * exp(-(N-Nbias)*(N-Nbias)/2./dNbias/dNbias);
   phi[0] += phiamp * bias * Bias * GaussianFactor * dN;
 }
-#elif BrokenPoint==1
+#elif MODEL==1
 void STOLAS::RK4Mbias(double &N, std::vector<double> &phi, double dN, double dw, double Bias,
                       double N0, bool broken) {
   

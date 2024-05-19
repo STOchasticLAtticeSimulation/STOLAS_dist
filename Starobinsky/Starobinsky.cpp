@@ -3,15 +3,14 @@
 //--------- User may change ---------
 // Model parameters
 const std::string model = "Starobinsky"; // Name of the model
-const double H0 = 1e-5;
-const double calPRIR = 8.5e-10;
-const double Lambda = 1700;
-const double Ap = sqrt(9./4/M_PI/M_PI*H0*H0*H0*H0*H0*H0/calPRIR);
-const double Am = Ap/Lambda;
-const double V0 = 3*H0*H0;
+const double H0 = 1e-5; // Hubble parameter of broken point
+const double calPRIR = 8.5e-10; // Amplitude of curvature perturbation
+const double Lambda = 1700; // Ratio between Ap to Am
+const double Ap = sqrt(9./4/M_PI/M_PI*H0*H0*H0*H0*H0*H0/calPRIR); // Gradient of the potential at first stage
+const double Am = Ap/Lambda; // Gradient of the potential at second stage
+const double V0 = 3*H0*H0; // Amplitude of flat potential
 const std::vector<double> phii{0.0193,-5.45e-7}; // Initial conditions {field,derivative}
 const double phif = -0.0187; // The inflaton value at the end of inflation
-
 
 // Potential
 double STOLAS::VV(double phi) {
@@ -55,10 +54,13 @@ double STOLAS::calPphi(double &N, std::vector<double> &phi, double N0, bool brok
       (2.*pow(alpha,6)*pow(Lambda,2)*pow(sigma,6));
   }
 }
+
+// The power spectrum of pi
 double STOLAS::calPpi(double &N, std::vector<double> &phi, double N0, bool broken) {
   return 0;
 }
 
+// Cross correlation of phi and pi
 double STOLAS::RecalPphipi(double &N, std::vector<double> &phi, double N0, bool broken) {
   return 1;
 }

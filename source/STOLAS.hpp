@@ -67,10 +67,10 @@ public:
 
   void RK4(double &t, std::vector<double> &x, double dt);
 
-  #if BrokenPoint==0
+  #if MODEL==0
     double calPphi(std::vector<double> &phi);
     void RK4Mbias(double &N, std::vector<double> &phi, double dN, double dw, double Bias);
-  #elif BrokenPoint==1
+  #elif MODEL==1
     double calPphi(double &N, std::vector<double> &phi, double N0, bool broken);
     double calPpi(double &N, std::vector<double> &phi, double N0, bool broken);
     double RecalPphipi(double &N, std::vector<double> &phi, double N0, bool broken);
