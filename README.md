@@ -1,3 +1,5 @@
+<img src="source/STOLAS_NO_BG.png" width="350">
+
 # How to use STOLAS
 
 ## Download
