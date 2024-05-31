@@ -1,4 +1,7 @@
-<img src="source/STOLAS_NO_BG.png" width="350">
+<p align="center">
+  <!-- <img src="source/STOLAS_NO_BG.png" width="350"> -->
+  <img src="source/STOLAS_LOGO.png" width="500">
+</p>
 
 # How to use STOLAS
 
