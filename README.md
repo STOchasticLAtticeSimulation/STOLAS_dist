@@ -110,16 +110,6 @@ saved by `STOLAS` (so it needs `sbias = true`) and writes the compaction functio
 SIGMA=100. ./functions 0
 ```
 
-## Tests
-The noise generation is optimized to touch only the lattice points on the shell of each step.
-The original (slow) implementation is kept in *STOLAS/tests/noise_bias_ref.hpp* for regression tests:
-- `make test` compares the generated noise and bias fields of the two implementations
-  (several seeds, steps and fields) for the current `MODEL` and `parameters.hpp`.
-  Try several `NLpower` (e.g. 4 to 7).
-- `tests/compare_nmap.sh [MODEL] [seed] [NLpower] [dN]` runs STOLAS with both implementations on a
-  small lattice (copies of the sources are used, defaults: `1 0 5 0.01`) and compares all output files.
-  `tests/compare.cpp` is the comparison tool (max difference, relative to the largest value).
-
 ## Batch jobs
 *STOLAS/bstolas.sh* and *STOLAS/bfunc.sh* are examples of job scripts which run many seeds
 (they are written for an SGE-like queue; edit the `#$` lines for your system).
