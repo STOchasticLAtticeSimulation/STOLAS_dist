@@ -429,13 +429,13 @@ inline double EoN(const state_type &phi) {
 
 // Model parameters
 const std::string model = "hybrid"; // Name of the model
-const bool CUBIC = false;
+const bool CUBIC = true;
 const double Pzeta = 2.1e-9;
 const double Mm = 1.e-2;
 const double pc = sqrt(2.)*Mm;
-const double Pi = 10.;//11.;//
+const double Pi = 11.;//10;//
 const double mu1 = pw2(Pi/Mm)/pc; //7.07e+7;//
-const double mu2 = 10.7;//6.8;//
+const double mu2 = 6.8;//10.7;//
 const double mu3 = 0.0375;
 const double lam = pow(Pzeta*12.*pw2(M_PI/mu1),0.25);
 

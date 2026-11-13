@@ -4,9 +4,9 @@
 // double sigma = std::stod(std::getenv("SIGMA"));
 
 // Parameters of STOLAS
-const double sigma = 0.5;// //ksigma = 2pi sigma exp(N) / L, nsigma = sigma exp(N)
+const double sigma = 1./16; //0.5;// //ksigma = 2pi sigma exp(N) / L, nsigma = sigma exp(N)
 constexpr double dn = 1; // Thickness of nsigma sphere shell
-constexpr int NLpower = 7; // Box size L = 2^NLpower lattice points per side
+constexpr int NLpower = 8; // Box size L = 2^NLpower lattice points per side
 constexpr int NLnoise = 1 << NLpower; // (derived) number of lattice points per side
 constexpr double dN = 0.001;//*M_LN2; // e-folds step
 constexpr double Nprec = 1e-7; // Precision of e-foldings
