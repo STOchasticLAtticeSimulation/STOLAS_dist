@@ -5,10 +5,14 @@
 !Makefile
 *.o
 .build_flags
-tests/work/
+
+# shared via Google Drive (symbolic links in STOLAS/), not under git control
+# (no trailing slash: a symlink is not a directory for git)
+data
+tests
+plot.nb
 
 # simulation output
-data/
 *.dat
 *.bin
 
