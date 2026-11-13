@@ -1,0 +1,18 @@
+# build products and executables (extensionless files)
+*
+!*.*
+!*/
+!Makefile
+*.o
+.build_flags
+tests/work/
+
+# simulation output
+data/
+*.dat
+*.bin
+
+# misc
+.DS_Store
+.vscode
+*~
